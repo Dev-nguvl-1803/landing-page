@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends</title>
+    <link rel="icon"
+        href="https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization_live/c0ff1c73fab6ddc82472ff5c79c9bd5a0032c616-110x70.svg"
+        sizes="any">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-btn,
+        .language-btn,
+        .play-now-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .play-now-btn {
+            background-color: #00bfff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .overlay h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .play-free-btn {
+            background-color: #d4af37;
+            color: black;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 50px 20px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        .news-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .news-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .news-card {
+            background-color: white;
+            width: 30%;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            overflow: hidden;
+            /* Ensure content doesn't overflow */
+        }
+
+        .news-card:hover {
+            transform: scale(1.05);
+        }
+
+        .news-card iframe {
+            width: 100%;
+            height: 200px;
+            /* Adjust the height as needed */
+            border: none;
+        }
+
+        .news-info {
+            padding: 20px;
+        }
+
+        .news-category {
+            color: #ff9900;
+            font-weight: bold;
+        }
+
+        .news-date {
+            color: #999;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .news-info h3 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .news-info p {
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Champion Selection Section */
+        .champion-selection {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .champion-categories {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .champion-category {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-align: center;
+            width: 150px;
+        }
+
+        .champion-category:hover {
+            transform: scale(1.1);
+        }
+
+        .champion-category img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .champion-category h3 {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .champion-buttons {
+            margin-top: 20px;
+        }
+
+        .champion-buttons1 button {
+            background-color: rgb(200, 170, 110);
+            ;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .champion-buttons2 button {
+            background-color: rgb(89, 193, 222);
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .champion-buttons1 button:hover {
+            background-color: rgb(207, 183, 105);
+        }
+
+        .champion-buttons2 button:hover {
+            background-color: rgb(128, 215, 236);
+        }
+
+        .selected-champion {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .selected-champion img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .selected-champion h3 {
+            margin-top: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .selected-champion p {
+            font-size: 18px;
+            color: #777;
+        }
+
+        .section {
+            color: #ffffff;
+            background-color: #0e1624;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .section .btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #c89b3c;
+            color: #0e1624;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .section .btn:hover {
+            background-color: #a67a2d;
+        }
+
+        .videos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .videos video {
+            max-width: 45%;
+            height: auto;
+        }
+
+        .game-mode-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .game-mode-buttons {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .game-mode-button {
+            background-color: #00bfff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .game-mode-button:hover {
+            background-color: #007acc;
+        }
+
+        .game-mode-video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .game-mode-video video {
+            max-width: 60%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="picture/Remove-bg.ai_1721233424396.png" height="100px" width="150px" alt="Riot Games">
+                <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization_live/c0ff1c73fab6ddc82472ff5c79c9bd5a0032c616-110x70.svg"
+                    alt="League of Legends">
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#">Trò Chơi</a></li>
+                    <li><a href="#">Tướng</a></li>
+                    <li><a href="#">Tin Tức</a></li>
+                    <li><a href="#">Chi Tiết Cập Nhật</a></li>
+                    <li><a href="#">Esports</a></li>
+                    <li><a href="#">Vũ Trụ</a></li>
+                    <li><a href="#">Hỗ Trợ</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <button class="search-btn">🔍</button>
+                <button class="language-btn">🌐</button>
+                <button class="play-now-btn">Chơi Ngay</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source
+                    src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/8ab3e227121c53aacab0c9b9f7a48adbc65db520.webm"
+                    type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay">
+                <img
+                    src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9eb028de391e65072d06e77f06d0955f66b9fa2c-736x316.png?auto=format&fit=fill&q=80&w=300">
+                <br>
+                <button class="play-free-btn">Chơi Miễn Phí</button>
+            </div>
+        </div>
+        <section class="news-section">
+            <h2>Tin Tức Tiêu Biểu</h2>
+            <div class="news-cards">
+                <div class="news-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/aIAwEV_txnc" frameborder="0"
+                        allowfullscreen></iframe>
+                    <div class="news-info">
+                        <span class="news-category">Cập Nhật Trò Chơi</span>
+                        <span class="news-date">2 tháng trước</span>
+                        <h3>Thông Tin Bản Cập Nhật 14.9</h3>
+                        <p>Sẵn sàng đón MSI, Võ Đài và bản cập nhật 14.9 nào!</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/aIAwEV_txnc" frameborder="0"
+                        allowfullscreen></iframe>
+                    <div class="news-info">
+                        <span class="news-category">Esports</span>
+                        <span class="news-date">3 tháng trước</span>
+                        <h3>Kết Quả CKTG 2023</h3>
+                        <p>Chúc mừng đội tuyển chiến thắng CKTG 2023!</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/aIAwEV_txnc" frameborder="0"
+                        allowfullscreen></iframe>
+                    <div class="news-info">
+                        <span class="news-category">Sự Kiện</span>
+                        <span class="news-date">1 tháng trước</span>
+                        <h3>Sự Kiện Đại Chiến 2023</h3>
+                        <p>Tham gia ngay sự kiện Đại Chiến với nhiều phần thưởng hấp dẫn!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="champion-selection">
+            <h2>Chọn Ngay Một Tướng</h2>
+            <p>Cho dù thích lao vào giao tranh, thích hỗ trợ đồng đội hoặc cả hai, bạn sẽ luôn tìm thấy vị trí thích hợp
+                dành cho mình trong Summoner's Rift.</p>
+            <div class="champion-categories">
+                <div class="champion-category" data-role="sat-thu">
+                    <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/befd42ad6d2564159a441d08cfc3bf511532eb74-1628x1628.png?auto=format&fit=fill&q=80&w=674"
+                        alt="Sát Thủ">
+                    <h3>Sát Thủ</h3>
+                </div>
+                <div class="champion-category" data-role="dau-si">
+                    <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/70c26e49de8a2c79ac3de144772d2debd195edff-1628x1628.png?auto=format&fit=fill&q=80&w=674"
+                        alt="Đấu Sĩ">
+                    <h3>Đấu Sĩ</h3>
+                </div>
+                <div class="champion-category" data-role="phap-su">
+                    <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/ff6c8c57411e5c7e0551b02334fccedc78866143-1628x1628.png?auto=format&fit=fill&q=80&w=674"
+                        alt="Pháp Sư">
+                    <h3>Pháp Sư</h3>
+                </div>
+                <div class="champion-category" data-role="xa-thu">
+                    <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/f136500bd46f823d37515a72b867425d3a0b3e54-1628x1628.png?auto=format&fit=fill&q=80&w=674"
+                        alt="Xạ Thủ">
+                    <h3>Xạ Thủ</h3>
+                </div>
+                <div class="champion-category" data-role="ho-tro">
+                    <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/dbdded937cd214bb2a1189697a9e4f49f8c04505-1628x1628.png?auto=format&fit=fill&q=80&w=674"
+                        alt="Hỗ Trợ">
+                    <h3>Hỗ Trợ</h3>
+                </div>
+                <div class="champion-category" data-role="do-don">
+                    <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/95daf6dd2b28f03d5ba2ea1fabbabc3bc3ff6e6e-1628x1628.png?auto=format&fit=fill&q=80&w=674"
+                        alt="Đỡ Đòn">
+                    <h3>Đỡ Đòn</h3>
+                </div>
+            </div>
+            <div class="champion-buttons">
+                <div class="champion-buttons1">
+                    <button type="button">Khám Phá Thêm Các Vị Tướng</button>
+                </div>
+                <div class="champion-buttons2">
+                    <button type="button">Chơi Ngay</button>
+                </div>
+            </div>
+        </section>
+        <div class="section">
+            <h2>HẠ GỤC KẺ ĐỊCH</h2>
+            <h2>MỘT CÁCH SANG CHẢNH</h2>
+            <p>Thay đổi diện mạo các vị tướng yêu thích với trang phục để tạo nên điểm nhấn của riêng bạn.</p>
+            <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/76c98a7d43d4185e9ce1c9e0cd6f9647fed75acd-1304x1304.png?auto=format&fit=fill&q=80&w=728"
+                alt="Champion">
+        </div>
+
+        <div class="section">
+            <h2>RẤT NHIỀU CÁCH CHƠI</h2>
+            <a href="#" class="btn">CHƠI NGAY</a>
+            <div class="game-mode-section">
+                <div class="game-mode-buttons">
+                    <button class="game-mode-button" onclick="showVideo('vo-dai')">Võ Đài</button>
+                    <button class="game-mode-button" onclick="showVideo('summoners-rift')">Summoner's Rift</button>
+                    <button class="game-mode-button" onclick="showVideo('aram')">ARAM</button>
+                    <button class="game-mode-button" onclick="showVideo('dau-truong-chan-ly')">Đấu Trường Chân
+                        Lý</button>
+                </div>
+                <div class="game-mode-video">
+                    <video id="vo-dai-video" style="display:none;" controls autoplay muted loop>
+                        <source
+                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/3dc01ace5cb488af854ce527e03999215633da79.mp4"
+                            type="video/mp4">
+                    </video>
+                    <video id="summoners-rift-video" style="display:none;" controls autoplay muted loop>
+                        <source
+                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/bbc27473157462adacf0de441a8796268eb2d0ac.mp4"
+                            type="video/mp4">
+                    </video>
+                    <video id="aram-video" style="display:none;" controls autoplay muted loop>
+                        <source
+                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/0a9b9f8dacb54086c58c1af8aa880d7cf6d7fea6.mp4"
+                            type="video/mp4">
+                    </video>
+                    <video id="dau-truong-chan-ly-video" style="display:none;" controls autoplay muted loop>
+                        <source
+                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/e5791dbc0787a96e83b82df20d44375f09f4d861.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            function showVideo(mode) {
+                // Hide all videos
+                document.getElementById('vo-dai-video').style.display = 'none';
+                document.getElementById('summoners-rift-video').style.display = 'none';
+                document.getElementById('aram-video').style.display = 'none';
+                document.getElementById('dau-truong-chan-ly-video').style.display = 'none';
+
+                // Show the selected video
+                document.getElementById(mode + '-video').style.display = 'block';
+            }
+        </script>
+    </main>
+</body>
+
+</html>
