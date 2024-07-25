@@ -5,396 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League of Legends</title>
-    <link rel="icon"
-        href="https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization_live/c0ff1c73fab6ddc82472ff5c79c9bd5a0032c616-110x70.svg"
-        sizes="any">
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="src/logoload.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
 
-        header {
-            position: fixed;
-            width: 100%;
-            background-color: black;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 0 20px;
-        }
-
-        .logo img {
-            height: 40px;
-            margin-right: 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-btn,
-        .language-btn,
-        .play-now-btn {
-            background-color: transparent;
-            border: none;
-            color: white;
-            font-size: 14px;
-            margin-left: 20px;
-            cursor: pointer;
-        }
-
-        .play-now-btn {
-            background-color: #00bfff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            background: rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        .overlay h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .play-free-btn {
-            background-color: #d4af37;
-            color: black;
-            padding: 15px 30px;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        /* News Section */
-        .news-section {
-            padding: 50px 20px;
-            background-color: #f8f8f8;
-            text-align: center;
-        }
-
-        .news-section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .news-cards {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .news-card {
-            background-color: white;
-            width: 30%;
-            margin: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            overflow: hidden;
-            /* Ensure content doesn't overflow */
-        }
-
-        .news-card:hover {
-            transform: scale(1.05);
-        }
-
-        .news-card iframe {
-            width: 100%;
-            height: 200px;
-            /* Adjust the height as needed */
-            border: none;
-        }
-
-        .news-info {
-            padding: 20px;
-        }
-
-        .news-category {
-            color: #ff9900;
-            font-weight: bold;
-        }
-
-        .news-date {
-            color: #999;
-            font-size: 14px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .news-info h3 {
-            font-size: 20px;
-            margin: 10px 0;
-        }
-
-        .news-info p {
-            color: #333;
-            font-size: 16px;
-        }
-
-        /* Champion Selection Section */
-        .champion-selection {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .champion-categories {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        .champion-category {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            text-align: center;
-            width: 150px;
-        }
-
-        .champion-category:hover {
-            transform: scale(1.1);
-        }
-
-        .champion-category img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .champion-category h3 {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .champion-buttons {
-            margin-top: 20px;
-        }
-
-        .champion-buttons1 button {
-            background-color: rgb(200, 170, 110);
-            ;
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .champion-buttons2 button {
-            background-color: rgb(89, 193, 222);
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .champion-buttons1 button:hover {
-            background-color: rgb(207, 183, 105);
-        }
-
-        .champion-buttons2 button:hover {
-            background-color: rgb(128, 215, 236);
-        }
-
-        .selected-champion {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .selected-champion img {
-            width: 200px;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .selected-champion h3 {
-            margin-top: 10px;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .selected-champion p {
-            font-size: 18px;
-            color: #777;
-        }
-
-        .section {
-            color: #ffffff;
-            background-color: #0e1624;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .section img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .section .btn {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: #c89b3c;
-            color: #0e1624;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
-        }
-
-        .section .btn:hover {
-            background-color: #a67a2d;
-        }
-
-        .videos {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .videos video {
-            max-width: 45%;
-            height: auto;
-        }
-
-        .game-mode-section {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .game-mode-buttons {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .game-mode-button {
-            background-color: #00bfff;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .game-mode-button:hover {
-            background-color: #007acc;
-        }
-
-        .game-mode-video {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .game-mode-video video {
-            max-width: 60%;
-            height: auto;
-        }
-    </style>
 </head>
 
+
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <img src="picture/Remove-bg.ai_1721233424396.png" height="100px" width="150px" alt="Riot Games">
-                <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization_live/c0ff1c73fab6ddc82472ff5c79c9bd5a0032c616-110x70.svg"
-                    alt="League of Legends">
+    <script src="core.js"></script>
+    <div id="main-content" style="display: block;">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="src/tải xuống.png" alt="Riot Games">
+                    <img src="src/logo-lol-mini.png" alt="League of Legends">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#introduction">Giới thiệu</a></li>
+                        <li><a href="#champions">Tướng</a></li>
+                        <li><a href="#costumes">Trang phục</a></li>
+                        <li><a href="#gameplay">Lối chơi</a></li>
+                        <li><a href="#news">Tin tức</a></li>
+                        <li><a href="#events">Sự kiện</a></li>
+                    </ul>
+                </nav>
+                <div class="header-right">
+                    <div class="search-container">
+                        <div class="search-icon">
+                            <img src="src/search-icon.png" alt="Search" class="icon">
+                        </div>
+                        <input type="text" class="search-box" placeholder="Tìm kiếm...">
+                    </div>
+                    <button class="language-btn">VN</button>
+                    <button class="play-now-btn">Chơi ngay</button>
+                </div>
             </div>
-            <nav>
-                <ul class="menu">
-                    <li><a href="#">Trò Chơi</a></li>
-                    <li><a href="#">Tướng</a></li>
-                    <li><a href="#">Tin Tức</a></li>
-                    <li><a href="#">Chi Tiết Cập Nhật</a></li>
-                    <li><a href="#">Esports</a></li>
-                    <li><a href="#">Vũ Trụ</a></li>
-                    <li><a href="#">Hỗ Trợ</a></li>
-                </ul>
-            </nav>
-            <div class="header-right">
-                <button class="search-btn">🔍</button>
-                <button class="language-btn">🌐</button>
-                <button class="play-now-btn">Chơi Ngay</button>
-            </div>
-        </div>
-    </header>
-    <main>
+        </header>
+
         <div class="video-container">
             <video autoplay muted loop>
                 <source
@@ -402,51 +62,43 @@
                     type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <div class="overlay">
+            <div class="overlay" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                data-aos-offset="0">
                 <img
                     src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9eb028de391e65072d06e77f06d0955f66b9fa2c-736x316.png?auto=format&fit=fill&q=80&w=300">
                 <br>
-                <button class="play-free-btn">Chơi Miễn Phí</button>
+                <button class="play-free-btn" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                    data-aos-delay="300" data-aos-offset="0"
+                    href="https://authenticate.riotgames.com/?client_id=prod-xsso-leagueoflegends&locale=vi_VN&method=riot_identity_signup&platform=web&redirect_uri=https%3A%2F%2Fauth.riotgames.com%2Fauthorize%3Fclient_id%3Dprod-xsso-leagueoflegends%26prompt%3Dsignup%26redirect_uri%3Dhttps%253A%252F%252Flienminh.vnggames.com%252Fdang-ky%252Fredownload%252F%26response_type%3Dcode%26scope%3Daccount%2520openid%26ui_locales%3Dvi">Chơi
+                    Miễn Phí</button>
             </div>
         </div>
-        <section class="news-section">
-            <h2>Tin Tức Tiêu Biểu</h2>
-            <div class="news-cards">
-                <div class="news-card">
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/aIAwEV_txnc" frameborder="0"
-                        allowfullscreen></iframe>
-                    <div class="news-info">
-                        <span class="news-category">Cập Nhật Trò Chơi</span>
-                        <span class="news-date">2 tháng trước</span>
-                        <h3>Thông Tin Bản Cập Nhật 14.9</h3>
-                        <p>Sẵn sàng đón MSI, Võ Đài và bản cập nhật 14.9 nào!</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/aIAwEV_txnc" frameborder="0"
-                        allowfullscreen></iframe>
-                    <div class="news-info">
-                        <span class="news-category">Esports</span>
-                        <span class="news-date">3 tháng trước</span>
-                        <h3>Kết Quả CKTG 2023</h3>
-                        <p>Chúc mừng đội tuyển chiến thắng CKTG 2023!</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/aIAwEV_txnc" frameborder="0"
-                        allowfullscreen></iframe>
-                    <div class="news-info">
-                        <span class="news-category">Sự Kiện</span>
-                        <span class="news-date">1 tháng trước</span>
-                        <h3>Sự Kiện Đại Chiến 2023</h3>
-                        <p>Tham gia ngay sự kiện Đại Chiến với nhiều phần thưởng hấp dẫn!</p>
-                    </div>
-                </div>
+
+        <section id="introduction" class="section1">
+            <div>
+                <br>
+                <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">Giới
+                    thiệu về League of Legends</h2>
+                <br>
+                <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">
+                    League of Legends là một trò chơi đấu trường trực tuyến nhiều người chơi, nơi người chơi điều khiển
+                    các
+                    nhân
+                    vật gọi là "tướng" và tham gia vào các trận đấu đội 5v5.</p>
+            </div>
+            <div>
+                <br>
+                <img src="https://www.jbo247.org/wp-content/uploads/2022/11/LMHT.jpg" width="90%" height="90%"
+                    alt="League of Legends Introduction" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                    data-aos-delay="500" data-aos-offset="0">
             </div>
         </section>
-        <section class="champion-selection">
-            <h2>Chọn Ngay Một Tướng</h2>
-            <p>Cho dù thích lao vào giao tranh, thích hỗ trợ đồng đội hoặc cả hai, bạn sẽ luôn tìm thấy vị trí thích hợp
+
+        <section id="champions" class="champion-selection">
+            <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">Chọn
+                Ngay Một Tướng</h2>
+            <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Cho dù
+                thích lao vào giao tranh, thích hỗ trợ đồng đội hoặc cả hai, bạn sẽ luôn tìm thấy vị trí thích hợp
                 dành cho mình trong Summoner's Rift.</p>
             <div class="champion-categories">
                 <div class="champion-category" data-role="sat-thu">
@@ -480,73 +132,157 @@
                     <h3>Đỡ Đòn</h3>
                 </div>
             </div>
-            <div class="champion-buttons">
-                <div class="champion-buttons1">
-                    <button type="button">Khám Phá Thêm Các Vị Tướng</button>
+            <section id='costumes'>
+                <div class="section">
+                    <div id='img-ha' align='center' data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                        data-aos-delay="300" data-aos-offset="0">
+                        <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/76c98a7d43d4185e9ce1c9e0cd6f9647fed75acd-1304x1304.png?auto=format&fit=fill&q=80&w=728"
+                            width="50%" height="50%" alt="Champion">
+                    </div>
+                    <div id='img-ha2'>
+                        <br>
+                        <br>
+                        <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">HẠ GỤC KẺ ĐỊCH</h2>
+                        <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100"
+                            data-aos-offset="0">MỘT CÁCH SANG CHẢNH</h3>
+                        <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                            data-aos-offset="0">Thay đổi diện mạo các tướng yêu thích với trang phục để tạo nên điểm
+                            nhấn của riêng bạn.
+                        </p>
+                        <div class="champion-buttons" align='left' data-aos="fade-zoom-in"
+                            data-aos-easing="ease-in-back" data-aos-delay="500" data-aos-offset="0">
+                            <div class="champion-buttons1" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                                data-aos-delay="500" data-aos-offset="0">
+                                <button type="button">Khám Phá Thêm Các Vị Tướng</button>
+                            </div>
+                            <div class="champion-buttons2" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                                data-aos-delay="500" data-aos-offset="0">
+                                <button type="button">Chơi Ngay</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="champion-buttons2">
-                    <button type="button">Chơi Ngay</button>
+            </section>
+        </section>
+
+        <section id="gameplay" class="game-mode-section">
+            <div>
+                <h1 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Rất
+                    nhiều</h1>
+                <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="500" data-aos-offset="0">CÁCH
+                    CHƠI</h2>
+                <div class="game-mode-buttons" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                    data-aos-delay="700" data-aos-offset="0">
+                    <img class="game-mode-button active" src="src/vo-dai.png"
+                        onclick="showVideo('vo-dai');addClass(this, 'active')" 
+                        onload="showVideo('vo-dai')"></img>
+                    <img class="game-mode-button" src="src/summoner.png"
+                        onclick="showVideo('summoners-rift'); addClass(this, 'active')"></img>
+                    <img class="game-mode-button" src="src/aram.png"
+                        onclick="showVideo('aram'); addClass(this, 'active')"></img>
+                    <img class="game-mode-button" src="src/dau-truong.png"
+                        onclick="showVideo('dau-truong-chan-ly'); addClass(this, 'active')"></img>
+                </div>
+            </div>
+            <div class="game-mode-video" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="700"
+                data-aos-offset="0">
+                <video id="vo-dai-video" style="display:none;" autoplay muted loop>
+                    <source
+                        src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/3dc01ace5cb488af854ce527e03999215633da79.mp4"
+                        type="video/mp4">
+                </video>
+                <video id="summoners-rift-video" style="display:none;" autoplay muted loop>
+                    <source
+                        src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/bbc27473157462adacf0de441a8796268eb2d0ac.mp4"
+                        type="video/mp4">
+                </video>
+                <video id="aram-video" style="display:none;" autoplay muted loop>
+                    <source
+                        src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/0a9b9f8dacb54086c58c1af8aa880d7cf6d7fea6.mp4"
+                        type="video/mp4">
+                </video>
+                <video id="dau-truong-chan-ly-video" style="display:none;" autoplay muted loop>
+                    <source
+                        src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/e5791dbc0787a96e83b82df20d44375f09f4d861.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+        </section>
+        <section id="news" class="news-section">
+            <h2>Tin tức mới nhất</h2>
+            <div class="news-cards">
+                <div class="news-card">
+                    <iframe src="https://www.youtube.com/embed/JvKNRgs_8NE" allowfullscreen class="ytb-video"></iframe>
+                    <div class="news-info">
+                        <span class="news-category">Cập Nhật Trò Chơi</span>
+                        <span class="news-date">2 tháng trước</span>
+                        <h3>Thông Tin Bản Cập Nhật 14.14</h3>
+                        <p>Sẵn sàng đón MSI, Võ Đài và bản cập nhật 14.14 nào!</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <iframe src="https://www.youtube.com/embed/aIAwEV_txnc" allowfullscreen class="ytb-video"></iframe>
+                    <div class="news-info">
+                        <span class="news-category">Esports</span>
+                        <span class="news-date">3 tháng trước</span>
+                        <h3>Kết Quả CKTG 2023</h3>
+                        <p>Chúc mừng đội tuyển chiến thắng CKTG 2023!</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <iframe src="https://www.youtube.com/embed/2Oa9TDorsx8" allowfullscreen class="ytb-video"></iframe>
+                    <div class="news-info">
+                        <span class="news-category">Sự Kiện</span>
+                        <span class="news-date">1 tháng trước</span>
+                        <h3>Sự Kiện Tết Nguyên Đán 2023</h3>
+                        <p>Tham gia ngay sự kiện Tết Nguyên Đán với nhiều phần thưởng hấp dẫn!</p>
+                    </div>
                 </div>
             </div>
         </section>
-        <div class="section">
-            <h2>HẠ GỤC KẺ ĐỊCH</h2>
-            <h2>MỘT CÁCH SANG CHẢNH</h2>
-            <p>Thay đổi diện mạo các vị tướng yêu thích với trang phục để tạo nên điểm nhấn của riêng bạn.</p>
-            <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/76c98a7d43d4185e9ce1c9e0cd6f9647fed75acd-1304x1304.png?auto=format&fit=fill&q=80&w=728"
-                alt="Champion">
-        </div>
 
-        <div class="section">
-            <h2>RẤT NHIỀU CÁCH CHƠI</h2>
-            <a href="#" class="btn">CHƠI NGAY</a>
-            <div class="game-mode-section">
-                <div class="game-mode-buttons">
-                    <button class="game-mode-button" onclick="showVideo('vo-dai')">Võ Đài</button>
-                    <button class="game-mode-button" onclick="showVideo('summoners-rift')">Summoner's Rift</button>
-                    <button class="game-mode-button" onclick="showVideo('aram')">ARAM</button>
-                    <button class="game-mode-button" onclick="showVideo('dau-truong-chan-ly')">Đấu Trường Chân
-                        Lý</button>
-                </div>
-                <div class="game-mode-video">
-                    <video id="vo-dai-video" style="display:none;" controls autoplay muted loop>
-                        <source
-                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/3dc01ace5cb488af854ce527e03999215633da79.mp4"
-                            type="video/mp4">
-                    </video>
-                    <video id="summoners-rift-video" style="display:none;" controls autoplay muted loop>
-                        <source
-                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/bbc27473157462adacf0de441a8796268eb2d0ac.mp4"
-                            type="video/mp4">
-                    </video>
-                    <video id="aram-video" style="display:none;" controls autoplay muted loop>
-                        <source
-                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/0a9b9f8dacb54086c58c1af8aa880d7cf6d7fea6.mp4"
-                            type="video/mp4">
-                    </video>
-                    <video id="dau-truong-chan-ly-video" style="display:none;" controls autoplay muted loop>
-                        <source
-                            src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/e5791dbc0787a96e83b82df20d44375f09f4d861.mp4"
-                            type="video/mp4">
-                    </video>
-                </div>
+        <section id="events" class="hero-section">
+            <div class="hero-content" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100"
+                data-aos-offset="0">
+                <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Sự
+                    kiện biệt đội siêu thú</h2>
+                <h3 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Chế
+                    độ chơi mới: Hiểm họa đổ bộ</h3>
+                <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="500" data-aos-offset="0">Cùng
+                    đồng đội tiến vào đấu trường và chống lại những đợt tấn công vô hạn của các thế lực thù địch
+                    trong
+                    chế độ chơi PvE mới nhất.</p>
+                <button class="learn-more-btn" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+                    data-aos-delay="300" data-aos-offset="0">Tìm hiểu thêm</button>
             </div>
+        </section>
+    </div>
+    <footer>
+        <div class="footer-middle">
+            <div class="footer-logos">
+                <img src="src/tải xuống.png" width="7.5%" height="auto" alt="Riot Games">
+                <img src="src/vng.png" width="auto" height="100%" alt="VNG Games">
+            </div>
+            <p>© 2009-2022 bởi Tập Đoàn Riot Games. LIÊN MINH HUYỀN THOẠI và mọi logo liên quan là nhãn hiệu, nhãn hiệu
+                dịch
+                vụ và/hoặc nhãn hiệu đã đăng ký của Tập Đoàn Riot Games.</p>
         </div>
+        <div class="footer-bottom">
+            <ul class="footer-links">
+                <li><a href="#">Chính Sách Bảo Mật</a></li>
+                <li><a href="#">Điều Khoản Sử Dụng (Riot)</a></li>
+                <li><a href="#">Tùy Chọn Cookies</a></li>
+            </ul>
+            <div class="footer-warning">
+                <img src="src/18+.png" alt="18+ Warning">
+            </div>
+    </footer>
 
-
-        <script>
-            function showVideo(mode) {
-                // Hide all videos
-                document.getElementById('vo-dai-video').style.display = 'none';
-                document.getElementById('summoners-rift-video').style.display = 'none';
-                document.getElementById('aram-video').style.display = 'none';
-                document.getElementById('dau-truong-chan-ly-video').style.display = 'none';
-
-                // Show the selected video
-                document.getElementById(mode + '-video').style.display = 'block';
-            }
-        </script>
-    </main>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
