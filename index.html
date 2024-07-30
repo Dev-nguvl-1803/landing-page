@@ -47,7 +47,13 @@
                         <div class="search-icon">
                             <img src="src/search-icon.png" alt="Search" class="icon">
                         </div>
-                        <input type="text" class="search-box" placeholder="Tìm kiếm...">
+                        <form><input type="text" class="search-box" placeholder="Tìm kiếm..." required>
+</form>
+                    </div>
+                    <div class="bright-container">
+                        <div class="search-icon">
+                            <img src="src/brightness.png" alt="Search" class="icon" onclick="myToggle()">
+                        </div>
                     </div>
                     <button class="language-btn">VN</button>
                     <button class="play-now-btn">Chơi ngay</button>
@@ -76,6 +82,9 @@
 
         <section id="introduction" class="section1">
             <div>
+                
+            </div>
+            <div>
                 <br>
                 <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">Giới
                     thiệu về League of Legends</h2>
@@ -95,11 +104,8 @@
         </section>
 
         <section id="champions" class="champion-selection">
-            <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">Chọn
-                Ngay Một Tướng</h2>
-            <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Cho dù
-                thích lao vào giao tranh, thích hỗ trợ đồng đội hoặc cả hai, bạn sẽ luôn tìm thấy vị trí thích hợp
-                dành cho mình trong Summoner's Rift.</p>
+            <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">Chọn ngay một tướng phù hợp với phong cách của bạn</h2>
+            <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Dù bạn yêu thích việc lao vào giao tranh, hỗ trợ đồng đội, hay cả hai, luôn có một vị trí lý tưởng dành cho bạn trên Summoner's Rift.</p>
             <div class="champion-categories">
                 <div class="champion-category" data-role="sat-thu">
                     <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/befd42ad6d2564159a441d08cfc3bf511532eb74-1628x1628.png?auto=format&fit=fill&q=80&w=674"
@@ -137,7 +143,7 @@
                     <div id='img-ha' align='center' data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
                         data-aos-delay="300" data-aos-offset="0">
                         <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/76c98a7d43d4185e9ce1c9e0cd6f9647fed75acd-1304x1304.png?auto=format&fit=fill&q=80&w=728"
-                            width="50%" height="50%" alt="Champion">
+                            width="60%" height="60%" alt="Champion">
                     </div>
                     <div id='img-ha2'>
                         <br>
@@ -168,15 +174,16 @@
 
         <section id="gameplay" class="game-mode-section">
             <div>
-                <h1 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">Rất
+                <h1 id='gameMode0' data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+                    data-aos-offset="0">Rất
                     nhiều</h1>
-                <h2 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="500" data-aos-offset="0">CÁCH
+                <h2 id='gameMode1' data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="500"
+                    data-aos-offset="0">CÁCH
                     CHƠI</h2>
                 <div class="game-mode-buttons" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
                     data-aos-delay="700" data-aos-offset="0">
                     <img class="game-mode-button active" src="src/vo-dai.png"
-                        onclick="showVideo('vo-dai');addClass(this, 'active')" 
-                        onload="showVideo('vo-dai')"></img>
+                        onclick="showVideo('vo-dai');addClass(this, 'active')" onload="showVideo('vo-dai')"></img>
                     <img class="game-mode-button" src="src/summoner.png"
                         onclick="showVideo('summoners-rift'); addClass(this, 'active')"></img>
                     <img class="game-mode-button" src="src/aram.png"
@@ -212,31 +219,31 @@
         <section id="news" class="news-section">
             <h2>Tin tức mới nhất</h2>
             <div class="news-cards">
-                <div class="news-card">
+                <div class="news-card" id='taggg1'>
                     <iframe src="https://www.youtube.com/embed/JvKNRgs_8NE" allowfullscreen class="ytb-video"></iframe>
                     <div class="news-info">
                         <span class="news-category">Cập Nhật Trò Chơi</span>
                         <span class="news-date">2 tháng trước</span>
-                        <h3>Thông Tin Bản Cập Nhật 14.14</h3>
-                        <p>Sẵn sàng đón MSI, Võ Đài và bản cập nhật 14.14 nào!</p>
+                        <h3 id='tagg1'>Thông Tin Bản Cập Nhật 14.14</h3>
+                        <p id='tag1'>Sẵn sàng đón MSI, Võ Đài và bản cập nhật 14.14 nào!</p>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" id='taggg2'>
                     <iframe src="https://www.youtube.com/embed/aIAwEV_txnc" allowfullscreen class="ytb-video"></iframe>
                     <div class="news-info">
                         <span class="news-category">Esports</span>
                         <span class="news-date">3 tháng trước</span>
-                        <h3>Kết Quả CKTG 2023</h3>
-                        <p>Chúc mừng đội tuyển chiến thắng CKTG 2023!</p>
+                        <h3 id='tagg2'>Kết Quả CKTG 2023</h3>
+                        <p id='tag2'>Chúc mừng đội tuyển chiến thắng CKTG 2023!</p>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" id='taggg3'>
                     <iframe src="https://www.youtube.com/embed/2Oa9TDorsx8" allowfullscreen class="ytb-video"></iframe>
-                    <div class="news-info">
+                    <div class="news-info"'>
                         <span class="news-category">Sự Kiện</span>
                         <span class="news-date">1 tháng trước</span>
-                        <h3>Sự Kiện Tết Nguyên Đán 2023</h3>
-                        <p>Tham gia ngay sự kiện Tết Nguyên Đán với nhiều phần thưởng hấp dẫn!</p>
+                        <h3 id='tagg3'>Sự Kiện Tết Nguyên Đán 2023</h3>
+                        <p id='tag3'>Tham gia ngay sự kiện Tết Nguyên Đán với nhiều phần thưởng hấp dẫn!</p>
                     </div>
                 </div>
             </div>
@@ -254,7 +261,7 @@
                     trong
                     chế độ chơi PvE mới nhất.</p>
                 <button class="learn-more-btn" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
-                    data-aos-delay="300" data-aos-offset="0">Tìm hiểu thêm</button>
+                    data-aos-delay="300" data-aos-offset="0" id='learn-more-btw'>Tìm hiểu thêm</button>
             </div>
         </section>
     </div>
@@ -264,7 +271,7 @@
                 <img src="src/tải xuống.png" width="7.5%" height="auto" alt="Riot Games">
                 <img src="src/vng.png" width="auto" height="100%" alt="VNG Games">
             </div>
-            <p>© 2009-2022 bởi Tập Đoàn Riot Games. LIÊN MINH HUYỀN THOẠI và mọi logo liên quan là nhãn hiệu, nhãn hiệu
+            <p>© 2009-2024 bởi Tập Đoàn Riot Games. LIÊN MINH HUYỀN THOẠI và mọi logo liên quan là nhãn hiệu, nhãn hiệu
                 dịch
                 vụ và/hoặc nhãn hiệu đã đăng ký của Tập Đoàn Riot Games.</p>
         </div>
