@@ -16,7 +16,7 @@ function addClass(element, className) {
 
     element.classList.add(className);
 }
-
+ 
 function theme(element, text) {
     var cards = document.getElementsByClassName(text);
     for (var i = 0; i < cards.length; i++) {
